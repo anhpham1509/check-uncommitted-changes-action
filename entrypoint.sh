@@ -2,6 +2,8 @@
 set -e
 
 function check_uncommitted_changes() {
+  git config --global --add safe.directory /github/workspace
+  
   status=$(git status --porcelain)
   if [ -n "$status" ]; then
     status="${status//'%'/'%25'}"
